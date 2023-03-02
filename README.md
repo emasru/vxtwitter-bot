@@ -10,4 +10,4 @@ The bot itself is built using Pycord. I have not tested the bot with any permiss
 
 Put the token of your bot in `token.dat`
 
-(If you have any suggestions for other emojis to represent the undo and delete button in the UI view, please send them to me: `emas#9462` 
+(If you have any suggestions for other emojis to represent the undo and delete button in the UI view, please send them to me: `emas#9462`)
