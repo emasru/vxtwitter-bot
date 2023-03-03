@@ -15,8 +15,6 @@ class UndoButton(discord.ui.Button):
 
         reverted_content = interaction.message.content.replace('vxtwitter', 'twitter')
         # Do it a second time for instagram, won't trigger if it doesnt find instagram in the link
-        
-
         reverted_content =  reverted_content.replace('ddinstagram', 'instagram')
         
         delete = DeleteButton()
@@ -41,6 +39,7 @@ class DeleteButton(discord.ui.Button):
         # await interaction.delete_original_message()
 
 
+# Could be simplified
 bot = discord.Bot(intents=discord.Intents.all())
 
 def get_file_contents(file):
