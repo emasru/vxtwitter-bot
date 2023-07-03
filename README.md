@@ -1,4 +1,4 @@
-# vxtwitter-bot: A Discord bot for fixing twitter (and instagram) links
+# vxtwitter-bot: A Discord bot for fixing Twitter (and Instagram) links
 
 Originally just created to fix Twitter links with the [vxtwitter](https://vxtwitter.com) service, but now also supports Instagram links with [InstaFix](https://www.ddinstagram.com/).
 
