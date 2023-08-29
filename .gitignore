@@ -1,4 +1,5 @@
 token.dat
 venv/
 __pycache__/
+.vscode/
 
