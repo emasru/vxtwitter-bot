@@ -117,7 +117,7 @@ async def link_replace(message: d.Message) -> None:
     reply_view = d.ui.View(undo, delete, timeout=None)
 
     # await message.channel.send(content=reply_content, view=reply_view)
-    print("triggered sending message")
+    print("Triggered link replacement")
     await message.delete()
 
 @bot.listen()
