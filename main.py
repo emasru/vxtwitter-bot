@@ -129,8 +129,6 @@ async def on_message(message: d.Message):
         author_str = message.reference.resolved.content.split("sent by: ", 1)[1] # type: ignore
         user_tuple = (author_str.split("#")[0], author_str.split("#")[1])
         user = d.utils.get(bot.users, name=user_tuple[0], discriminator=user_tuple[1]) # type: ignore
-        
-        await message.channel.send(user.mention)
     
 
     await link_replace(message)
