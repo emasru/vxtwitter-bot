@@ -4,6 +4,7 @@ from discord.ext import tasks
 
 # TODO a few type ignores
 # TODO embed view expiry
+# TODO fix @ when replying to self
 
 VX_TWITTER_BASE_URL = "https://vxtwitter.com/"
 LINK_REPLACEMENTS = [
@@ -116,7 +117,7 @@ async def link_replace(message: d.Message) -> None:
     delete = DeleteButton()
     reply_view = d.ui.View(undo, delete, timeout=None)
 
-    # await message.channel.send(content=reply_content, view=reply_view)
+    await message.channel.send(content=reply_content, view=reply_view)
     print("Triggered link replacement")
     await message.delete()
 
@@ -125,12 +126,16 @@ async def on_message(message: d.Message):
     if reply_to_post(message):
         if not message.reference or (message.reference is d.DeletedReferencedMessage):
             return
+        
+        # If message did not have mention turned on
+        if not message.mentions:
+            return
 
         author_str = message.reference.resolved.content.split("sent by: ", 1)[1] # type: ignore
         user_tuple = (author_str.split("#")[0], author_str.split("#")[1])
         user = d.utils.get(bot.users, name=user_tuple[0], discriminator=user_tuple[1]) # type: ignore
-    
-
+        
+        await message.channel.send(user.mention)
     await link_replace(message)
 
 
