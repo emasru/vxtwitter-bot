@@ -10,7 +10,7 @@ VX_TWITTER_BASE_URL = "https://vxtwitter.com/"
 LINK_REPLACEMENTS = [
     ("https://twitter", "https://vxtwitter"),
     ("https://x", "https://vxtwitter"),
-    ("https://instagram", "https://ddinstagram")
+    ("https://www.instagram", "https://ddinstagram")
 ]
 
 
@@ -104,13 +104,17 @@ def reply_to_post(message: d.Message) -> bool:
 
     
 async def link_replace(message: d.Message) -> None:
+    print("Looking for a replacement")
     reply_content: str = ""
     for replacement_pair in LINK_REPLACEMENTS:
+        print(f"Checking if {replacement_pair[0]} is in: {message.content}")
         if replacement_pair[0] in message.content:
             reply_content = message.content.replace(replacement_pair[0], replacement_pair[1]) + " sent by: " + str(message.author)
+            print("Found a replacement")
             break
 
     if reply_content == "":
+        print("Found no replacement")
         return
 
     undo = UndoButton()
@@ -123,7 +127,9 @@ async def link_replace(message: d.Message) -> None:
 
 @bot.listen()
 async def on_message(message: d.Message):
+    print("Scanning message...")
     if reply_to_post(message):
+        print("Message was a reply to an embed")
         if not message.reference or (message.reference is d.DeletedReferencedMessage):
             return
         
