@@ -147,5 +147,11 @@ async def on_message(message: d.Message):
     await link_replace(message)
 
 
+# Slash command to check if bot is online
+@bot.command(description="Responds with the bot's latency")
+async def ping(ctx):
+    await ctx.respond(f"Latency is {bot.latency}")
+
+
 if __name__ == "__main__":
     bot.run(get_file_contents("token.dat"))
