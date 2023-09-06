@@ -113,6 +113,15 @@ async def link_replace(message: d.Message) -> None:
         if replacement_pair[0] in message.content:
             reply_content = message.content.replace(replacement_pair[0], replacement_pair[1]) + " sent by: " + str(message.author)
             print("Found a replacement")
+
+            # Remove the @everyone and @here as to not allow for unauthorized use
+            # Alternative: uncomment and indent if you want admins to be able to
+            # if isinstance(message.author, d.Member):
+            #     return
+            # if message.author.guild_permissions.administrator is not True: # type: ignore
+            reply_content = reply_content.replace("@everyone" , " ")
+            reply_content = reply_content.replace("@here" , " ")
+
             break
 
     if reply_content == "":
